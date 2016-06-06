@@ -3,16 +3,12 @@
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# I should make a screen-sessions file
-
-alias golf='screen -D -R -S vimgolf'
-alias kidtech='cd ~/kidtech && screen -D -R -S KidTech'
-alias interview='screen -D -R -S CrackingTheCodingInterviewPractice'
-alias webwork='screen -D -R -S WebWork'
+alias s='screen -DRS' # golf kidtech interview webwork
 
 alias g=git
 
 alias pytest='~/.local/bin/py.test'
+alias aliases='vim ~/.aliases && source ~/.aliases'
 alias vbashrc='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
 alias chex='chmod u+x'

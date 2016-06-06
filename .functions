@@ -27,36 +27,6 @@ function Silent(){
     source <(echo "nohup $* &>/dev/null &")
 }
 
-# restart a node server, based on dir
-#function again(){
-#    local dir="/home/elliott/programming/node/authenticationExample"
-#
-#    pkill node && wait $! 2>/dev/null
-#    local server=$dir"/server.js"
-#    log=$dir"/logg"
-#    echo $server restarted
-#    nohup node $server &> $log &
-#}
-
-#function move-to-oit() {
-#        permissions=$( stat -c %a %n $1 )
-#        # allow swadm to use the file
-#        chmod 777 $1
-#        scp $1 beach144@umm-energydev.oit.umn.edu:/swadm/
-#        echo
-#        chmod $permissions $1
-#}
-
-#function kill-module(){
-#        if [ -z $1 ] ; then
-#            echo "takes one argument: module that must die"
-#        else
-#            git submodule deinit $1
-#            git rm -f $1
-#            rm -rf ~/.git/modules/$1
-#        fi
-}
-
 # set the title of the gnome terminal tab
 function termtitle(){
     echo -ne "\033]0;${1}\007"
