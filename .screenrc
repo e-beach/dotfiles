@@ -4,5 +4,21 @@ startup_message off
 # Set a large scrollback buffer
 defscrollback 32000
 
+mousetrack on
+
 # Always start `screen` with UTF-8 enabled (`screen -U`)
 defutf8 on
+
+
+# add 256 color support
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E38;5;%dm'
+defbce "on"
+
+
+#To make underlined text show in color add this to your ~/.screenrc file:
+attrcolor u "-u R"
+
+#To stop the extraneous underlining, add this to your ~/.screenrc file:
+attrcolor d -d
+
