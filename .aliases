@@ -1,21 +1,39 @@
 #!/usr/bin/env bash
 
-alias gt='grunt test'
+####################################################
+# scratch
+####################################################
 
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-alias s='screen -DRS' # golf kidtech interview webwork
+alias sudo='sudo ' # Enable aliases to be sudo’ed
+alias gt='grunt test'
+alias s='screen -DRS' # golf kidtech interview webwork ; save everything in screen sessions!
 alias py3='python3'
-alias pytest='~/.local/bin/py.test'
-alias py="echo *.py | sed 's/\.py//g' | sed 's/ /\n/g'"
-alias g=git
-alias reload='. ~/.bashrc'
+alias py="echo *.py | sed 's/\.py//g' | sed 's/ /\n/g'" # show just python files
 alias chex='chmod u+x'
 alias install='sudo apt-get update ; sudo apt-get install -y'
 alias upgrade='sudo apt-get update ; sudo apt-get upgrade -y'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && (time cat) 2>&1 | grep real | cut -f 2'
+
 ####################################################
-# Stuff I did not write
+# git aliases
+####################################################
+
+alias g='git'
+alias gl='git pull --prune'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gp='git push origin HEAD'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -am'
+alias gco='git checkout'
+alias gcb='git copy-branch-name'
+alias gb='git branch'
+alias gs='git status -sb'
+alias gac='git add -A && git commit -m'
+alias g_undo='git reset HEAD~1'
+
+####################################################
+# stuff I did not write
 ####################################################
 
 # IP addresses
@@ -49,9 +67,9 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-##################
+####################################################
 # ls/grep/color configuration
-##################
+####################################################
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
