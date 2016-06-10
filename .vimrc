@@ -13,6 +13,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-repeat'
+Plugin 'pangloss/vim-javascript'
 
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -24,7 +26,6 @@ set autowrite " Automatically save before commands like :next and :make
 set background=dark
 set backupdir=~/.vim/backups " Centralize backups, swapfiles and undo history
 set backupskip=/tmp/*, " Don’t create backups when editing files in certain directories
-""set colorcolumn=80 "display limit of 79 chars
 set cursorline " Highlight current line
 set directory=~/.vim/swaps
 set expandtab
@@ -63,11 +64,8 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 
-"goto last line when reading a file"
-autocmd bufreadpost * if line("'\"") > 0 && line("'\"") <= line("$")
-            \| exe "normal! g'\"" | endif
+autocmd bufreadpost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "goto last line when reading a file"
 autocmd bufwritepost .vimrc source $MYVIMRC "immediatly source changes to vimrc
-
 
 """"""""""""""""""""""""""""""""
 """"""""""""MAPPINGS""""""""""""
@@ -93,7 +91,6 @@ nnoremap <leader>df f{V%d
 "format source code
 nnoremap <leader>= ggVG=
 
-
 "select last pasted text"
 nnoremap gp `[v`]
 
@@ -107,23 +104,34 @@ nnoremap <C-e> mzA;<Esc>`z
 "replace <c-a> with as screen uses c-a "
 nnoremap <leader>inc <c-a>
 
-"I cant use my mouse to resize windows during screen session"
-nnoremap <leader>+ :vertical resize 
-
-"make editing vimrc easy
-nnoremap <leader>vimrc :tabe ~/.vimrc<cr>
-
 "delete trailing whitespace
 nnoremap <leader>? :%s/\s\+$//g<cr>
 "
 " Save a file as root (,W)"
 nnoremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+"I cant use my mouse to resize windows during screen session"
+nnoremap <leader>+ :vertical resize
+
+"make editing vimrc easy
+nnoremap <leader>vimrc :tabe ~/.vimrc<cr>
+
 "buffers
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+"delete current buffer"
+nnoremap <silent> ]d :bp\|bd #<CR>
+
+""nnoremap <left> <c-w>h just use those keys
+""nnoremap <right> <c-w>l
+nnoremap <up> :tabn<CR>
+nnoremap <down> :tabp<CR>
+
+"resize window"
+nnoremap <left> <c-w>-
+nnoremap <right> <c-w>+
 
 set pastetoggle=<c-P> "don't indent when pasting
 

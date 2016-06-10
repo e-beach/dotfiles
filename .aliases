@@ -1,28 +1,19 @@
 #!/usr/bin/env bash
 
+alias gt='grunt test'
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
 alias s='screen -DRS' # golf kidtech interview webwork
-
-alias g=git
-
+alias py3='python3'
 alias pytest='~/.local/bin/py.test'
-alias aliases='vim ~/.aliases && source ~/.aliases'
-alias vbashrc='vim ~/.bashrc && source ~/.bashrc'
-alias vvimrc='vim ~/.vimrc'
+alias py="echo *.py | sed 's/\.py//g' | sed 's/ /\n/g'"
+alias g=git
+alias reload='. ~/.bashrc'
 alias chex='chmod u+x'
-
 alias install='sudo apt-get update ; sudo apt-get install -y'
 alias upgrade='sudo apt-get update ; sudo apt-get upgrade -y'
-
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && (time cat) 2>&1 | grep real | cut -f 2'
-
-#alias morris_energy='ssh beach144@umm-energydev.oit.umn.edu'
-#alias Falcon='ssh -X beach144@falcon.morris.umn.edu'
-#alias mount_windows='sudo mount -t ntfs -o ro /dev/sda5 /media/windows'
-#alias op='gnome-open'
-
 ####################################################
 # Stuff I did not write
 ####################################################
