@@ -15,10 +15,15 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E38;5;%dm'
 defbce "on"
 
+# lets hope this doesnt mess with colors
+termcapinfo xterm* ti@:te@
 
 #To make underlined text show in color add this to your ~/.screenrc file:
-attrcolor u "-u R"
+#attrcolor u "-u R" this was confusing
 
 #To stop the extraneous underlining, add this to your ~/.screenrc file:
 attrcolor d -d
+
+# dont die forever on <c-d>
+export IGNOREOF=1
 
