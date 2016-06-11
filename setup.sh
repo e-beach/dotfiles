@@ -1,20 +1,36 @@
 #!/usr/bin/bash
 
-# Copy all files in the list from the home directory to here ; overwrites all the files here
-# could add git add to make more effective/robust
+# This script is intended to be run after setup.sh, as it copies all the files in our home directory to here. And overwrites all of the files here.
+
+# sudo apt-get install realpath
 
 set -e
 
-dotfilesg="$(realpath "$(dirname "$0")")"
+DOTFILES="$(realpath "$(dirname "$0")")"
+cd $DOTFILES
 
-for f in \
-    .vim .aliases .bash_prompt .bashrc .curlrc .editorconfig .exports .extras .functions .gitconfig .gitignore .hushlogin .screenrc .vimrc .wgetrc
-do
-    dest="$HOME/$f"
-    src="$dotfilesg/$f"
-    echo $src
-    if [[ ! -h $dest ]] ; then
-        cp -rf "$dest" .
-    fi
-    ln -f -s "$src" "$dest"
-done
+
+
+function doIt() {
+
+    for f in \
+        .aliases .bash_prompt .bashrc .curlrc .editorconfig .exports .extras .functions .gitconfig .gitignore .hushlogin .screenrc .vimrc .wgetrc
+    do
+        dest="$HOME/$f"
+        src="$DOTFILES/$f"
+        echo $src
+        ln -f -s "$src" "$dest"
+    done
+
+    # install vundle
+    bash vimInstall.sh
+}
+
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+    doIt;
+else
+    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        doIt;
+    fi;
+fi;
