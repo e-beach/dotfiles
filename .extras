@@ -1,4 +1,4 @@
-. ~/kid-tech-aliases
+#. ~/kid-tech-aliases
 
 
 # experimental / extraneous settings
@@ -7,4 +7,4 @@
 stty -ixon
 
 # map capslock to control
-setxkbmap -option ctrl:nocaps
+# setxkbmap -option ctrl:nocaps

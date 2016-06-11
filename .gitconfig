@@ -1,3 +1,12 @@
 [user]
-	name = Elliott Beach
-	email = elliott2.71828@gmail.com
+   name = Elliott Beach
+   email = elliott2.71828@gmail.com
+
+[github]
+   user = elli0ttB
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    ui = true
