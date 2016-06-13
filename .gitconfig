@@ -10,3 +10,9 @@
 
 [color]
     ui = true
+
+[core]
+    excludesfile = ~/.gitignore
+
+[credential]
+    helper = cache --timeout=3600

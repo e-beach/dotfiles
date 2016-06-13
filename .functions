@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
+# edit config files with convenience
 function dot() {
     vim  ~/."$1" && . ~/.bashrc
+}
+
+function gitRepo(){
+    #TODO grab user from git config
+    USER='elli0ttB'
+    REPO="${1}"
+    curl -u "${USER}" https://api.github.com/user/repos -d {"name":"${REPO}"}
+    git remote add origin "https://github.com/${USER}/${REPO}.git"
+    git push origin master
 }
 
 function c(){

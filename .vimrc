@@ -48,6 +48,7 @@ set noerrorbells " Disable error bells, and allow sound
 set nostartofline "leave my cursor where it was
 set novisualbell
 set number "Display line numbers on the left
+set relativenumber
 set scrolloff=10 "display 10 lines above and below cursor
 set secure
 set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
