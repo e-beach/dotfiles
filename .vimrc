@@ -124,12 +124,11 @@ nnoremap <silent> ]B :blast<CR>
 "delete current buffer"
 nnoremap <silent> ]d :bp\|bd #<CR>
 
-""nnoremap <left> <c-w>h just use those keys
-""nnoremap <right> <c-w>l
+"navigate tabs"
 nnoremap <up> :tabn<CR>
 nnoremap <down> :tabp<CR>
 
-"resize window"
+"resize splits"
 nnoremap <left> <c-w>-
 nnoremap <right> <c-w>+
 
