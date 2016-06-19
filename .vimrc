@@ -15,6 +15,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-repeat'
 Plugin 'pangloss/vim-javascript'
+Plugin 'kshenoy/vim-signature'
 
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -48,6 +49,7 @@ set noerrorbells " Disable error bells, and allow sound
 set nostartofline "leave my cursor where it was
 set novisualbell
 set number "Display line numbers on the left
+set relativenumber
 set scrolloff=10 "display 10 lines above and below cursor
 set secure
 set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
@@ -84,6 +86,9 @@ inoremap <c-N> <tab>
 "
 "delete pair of brackets
 nnoremap <leader>x %x``x
+
+"delete function call
+nmap dsf ds)db
 
 "delete function
 nnoremap <leader>df f{V%d
@@ -131,6 +136,9 @@ nnoremap <down> :tabp<CR>
 "resize splits"
 nnoremap <left> <c-w>-
 nnoremap <right> <c-w>+
+nnoremap <c-G> <c-w><
+nnoremap <c-H> <c-w>>
+
 
 set pastetoggle=<c-P> "don't indent when pasting
 
@@ -216,6 +224,7 @@ if !exists("g:didSyntastic")
     let g:syntastic_javascript_jshint_exec = '/usr/bin/jshint'
 endif
 
+let g:NERDTreeWinSize = 20
 nnoremap <leader>nerd :NERDTree<cr>
 
 " display all buffers with airine
