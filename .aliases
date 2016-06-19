@@ -6,6 +6,7 @@
 
 alias sudo='sudo ' # Enable aliases to be sudo’ed
 alias gt='grunt test'
+alias l='less -r' # use less for reading colored log files
 alias s='screen -DRS' # golf kidtech interview webwork ; save everything in screen sessions!
 alias py3='python3'
 alias py="echo *.py | sed 's/\.py//g' | sed 's/ /\n/g'" # show just python files
