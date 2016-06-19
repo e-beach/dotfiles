@@ -6,10 +6,9 @@
 
 set -e
 
-DOTFILES="$(realpath "$(dirname "$0")")"
+DOTFILES="$( dirname "$( readlink -f "$0" )" )"
+echo $DOTFILES
 cd $DOTFILES
-
-
 
 function doIt() {
 
