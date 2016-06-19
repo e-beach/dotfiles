@@ -4,7 +4,6 @@
 # experimental / extraneous settings
 
 # for screen - ignore XON / XOFF
-stty -ixon
 
 # map capslock to control
 setxkbmap -option ctrl:nocaps

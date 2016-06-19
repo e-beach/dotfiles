@@ -22,6 +22,10 @@ shopt -s nocaseglob;
 
 shopt -s globstar
 
+
+# for screen, ignore input on/off signals that ruin putty
+stty -ixon
+
 #########################
 # completition boilerplate #
 #########################
