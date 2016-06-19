@@ -1,5 +1,8 @@
 # Compiled Python files
 *.pyc
 
+# .vim folder
+.vim
+
 # Folder view configuration files
 Desktop.ini
