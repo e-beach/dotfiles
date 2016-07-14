@@ -16,6 +16,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-repeat'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kshenoy/vim-signature'
+Plugin 'gioele/vim-autoswap'
+
 
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
