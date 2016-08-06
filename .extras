@@ -1,9 +1,19 @@
-. ~/kid-tech-aliases
-
-
-# experimental / extraneous settings
-
-# for screen - ignore XON / XOFF
+## experimental / extraneous settings
 
 # map capslock to control
 setxkbmap -option ctrl:nocaps
+
+
+kidtechdir='/home/beach144/kidtech/project/word-river'
+
+# kidtech start commiting
+function index () {
+    grunt-pid=$(pgrep grunt)
+    kill -STOP $grunt-pid
+    git checkout "$kidtechdir"/client/index.html
+}
+
+# resume task stopped by above index function
+function resume () {
+    kill -CONT $grunt-pid
+}

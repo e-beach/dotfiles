@@ -20,6 +20,7 @@ function c(){
     fi
 }
 
+# execute commande in background without terminating on closing terminal
 function Silent(){
     $* &> /dev/null & disown
 }
