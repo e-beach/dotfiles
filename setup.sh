@@ -1,12 +1,16 @@
 #!/usr/bin/bash
 
-# This script is intended to be run after setup.sh, as it copies all the files in our home directory to here. And overwrites all of the files here.
+#
+# Overwrite dotfiles in home directory with symlinks to the dofiles in this git repo.
+#
 
-# sudo apt-get install realpath
-
+# Exit immediatly on any error, as we could delete important stuff.
 set -e
 
+# `readlink -f` does not work on OSX.
+# see http://stackoverflow.com/questions/1055671/how-can-i-get-the-behavior-of-gnus-readlink-f-on-a-mac
 DOTFILES="$( dirname "$( readlink -f "$0" )" )"
+
 echo $DOTFILES
 cd $DOTFILES
 
@@ -17,11 +21,10 @@ function doIt() {
     do
         dest="$HOME/$f"
         src="$DOTFILES/$f"
-        echo $src
         ln -f -s "$src" "$dest"
     done
 
-    # install vundle
+    # install vim plugins and vimrc
     bash vimInstall.sh
 }
 
