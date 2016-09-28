@@ -5,6 +5,9 @@
 ####################################################
 
 alias sudo='sudo ' # Enable aliases to be sudo’ed
+function p {
+    pushd "$1" > /dev/null && ls
+}
 alias l='less -r' # use less for reading colored log files
 alias s='screen -DRS' # golf kidtech interview webwork ; save everything in screen sessions!
 alias chrome='google-chrome'
@@ -13,6 +16,11 @@ alias chex='chmod u+x'
 alias install='sudo apt-get update ; sudo apt-get install -y'
 alias upgrade='sudo apt-get update ; sudo apt-get upgrade -y'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && (time cat) 2>&1 | grep real | cut -f 2'
+
+cselabs='ssh beach144@kh4240-03.cselabs.umn.edu'
+
+
+
 
 ####################################################
 # git aliases
@@ -51,6 +59,22 @@ alias gf='git fetch'
 alias gl='git checkout master && git fetch && git rebase origin/master --preserve-merges --verbose'
 alias gp='git push origin HEAD'
 
+# clone repo from owner and name
+function clone () {
+    owner=$1
+    repo=$2
+    git clone "https://github.com/${owner}/${repo}.git"
+}
+
+function umn-clone () {
+    owner=$1
+    repo=$2
+    git clone "https://github.umn.edu/${owner}/${repo}.git"
+}
+
+# open git repo in github
+alias github="open https://github.$(git config remote.origin.url | cut -f2 -d.)"
+
 ## history
 alias gmrg='git merge --no-ff --no-commit'
 function grb { git rebase -i "HEAD~$1" ; } # `grb x` to rebase x commits back
@@ -69,6 +93,10 @@ function gbc {
         echo 'this function requires the branch-number to be switched to, counting by their listing in `git branch`, as the only argument.'
     fi
 }
+
+#### os x ###
+alias ibooks='open -a ibooks'
+#############
 
 ####################################################
 # stuff I did not write, but may be useful

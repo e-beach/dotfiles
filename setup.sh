@@ -9,7 +9,7 @@ set -e
 
 # `readlink -f` does not work on OSX.
 # see http://stackoverflow.com/questions/1055671/how-can-i-get-the-behavior-of-gnus-readlink-f-on-a-mac
-DOTFILES="$( dirname "$( readlink -f "$0" )" )"
+DOTFILES="/Users/elliott/me/projects/dotfiles"
 
 echo $DOTFILES
 cd $DOTFILES

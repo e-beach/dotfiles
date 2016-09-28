@@ -4,6 +4,15 @@ function dot() {
     vim  ~/."$1" && . ~/.bashrc
 }
 
+# This function can't be an alias ( `alias edit=$EDITOR` ), because alias strings are apparently evaluated at compile-time, so the alias wouldn't respond to changes to the EDITOR env variable.
+function edit {
+   "$EDITOR" "$1"
+}
+
+function emailme {
+    echo "" | mutt -a "$1" -s "$1" -- beach144@morris.umn.edu
+}
+
 function c(){
     # cd and ls, as well move up n directories if $1 is a number n.
     if [[ -z $1 ]] ; then
