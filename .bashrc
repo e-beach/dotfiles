@@ -1,5 +1,6 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
+
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extras}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
@@ -19,8 +20,6 @@ shopt -s histappend;
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
-
-shopt -s globstar
 
 
 # for screen, ignore input on/off signals that ruin putty
@@ -43,3 +42,6 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
 elif [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
+
+# added by travis gem
+[ -f /Users/elliott/.travis/travis.sh ] && source /Users/elliott/.travis/travis.sh

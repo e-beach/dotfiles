@@ -205,6 +205,13 @@ inoremap { {}<Left>
 inoremap " ""<Left>
 inoremap ' ''<Left>
 
+nnoremap <leader>gcc :!gcc % && ./a.out<CR>
+nnoremap <leader>g++ :!g++ % && ./a.out<CR>
+
+nnoremap <leader>sh  :!bash<CR>
+vnoremap <leader>cp :w !pbcopy<CR><CR>
+
+colorscheme Monokai
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plugins"
@@ -226,10 +233,11 @@ if !exists("g:didSyntastic")
     let g:syntastic_javascript_jshint_exec = '/usr/bin/jshint'
 endif
 
+let g:syntastic_python_checkers = ['python']
+let g:syntastic_html_checkers = ['']
+
 let g:NERDTreeWinSize = 20
 nnoremap <leader>nerd :NERDTree<cr>
 
 " display all buffers with airine
 let g:airline#extensions#tabline#enabled = 1"
-
-colorscheme busybee

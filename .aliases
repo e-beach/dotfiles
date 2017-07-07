@@ -1,32 +1,89 @@
 #!/usr/bin/env bash
 
-####################################################
-# scratch
-####################################################
-
 alias sudo='sudo ' # Enable aliases to be sudo’ed
-function p {
-    pushd "$1" > /dev/null && ls
+
+### utility aliases
+alias activate='source python/bin/activate' # activate a virtual environment
+aws='ec2-34-208-119-93'
+alias myaws='ssh -i "~/.ssh/ProjectInstance.pem" ubuntu@ec2-50-112-9-10.us-west-2.compute.amazonaws.com'
+function gosu(){
+    mv "$1" /Applications/osu!.app/drive_c/osu!/Songs
 }
-alias l='less -r' # use less for reading colored log files
-alias s='screen -DRS' # golf kidtech interview webwork ; save everything in screen sessions!
-alias chrome='google-chrome'
-alias py="echo *.py | sed 's/\.py//g' | sed 's/ /\n/g'" # show just python files
+function Pwn() {
+    VBoxManage startvm Pwn --type headless
+    ssh beachicus@localhost -p 3022
+    VBoxManage controlvm Pwn acpipowerbutton
+}
+
+function gitdump {
+    if [ ! -d ".git" ]; then
+        git init
+    fi
+    git add -A && git commit -m dump
+}
+alias browse_wp='chrome-cli open http://localhost:8888/wordpress'
+alias start_wp='/Applications/MAMP/bin/start.sh &'
+alias stop_wp='/Applications/MAMP/bin/stop.sh &'
+alias yo='projects && echo -e '\n\n\n' && c youngmis-website'
+alias screenshots='open ~/Desktop'
+alias recent='ls -t | head'
+alias opush='git push --set-upstream origin master'
+alias sodomize='\rm'
+alias vimcolors='c ~/.vim/bundle/vim-colorschemes/colors'
+alias mycolors='vimcolors && vim Monokai.vim && clear && c -'
+alias py='python -c'
+alias rm='sl'
+alias cc='pbcopy'
 alias chex='chmod u+x'
-alias install='sudo apt-get update ; sudo apt-get install -y'
-alias upgrade='sudo apt-get update ; sudo apt-get upgrade -y'
-alias timer='echo "Timer started. Stop with Ctrl-D." && date && (time cat) 2>&1 | grep real | cut -f 2'
+alias die='pkill python'
+alias finder='open .'
+alias h='heroku'
+alias how='howdoi'
+alias ida='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/IDA\ 6.8/idaq64.exe' # IDA disassembler
+alias ida32='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/IDA\ 6.8/idaq.exe'
+alias l='less -r' # use less for reading colored log files
+alias v='vim'
+alias m='make'
+alias i='ipython'
+alias p='python3'
+alias paste='pbpaste | pbcopy' # clean weird characters from clipboard
+alias pi='pip install --upgrade'
+alias xcode='open -a Xcode'
+alias desk='open ~/Desktop'
 
-cselabs='ssh beach144@kh4240-03.cselabs.umn.edu'
+function ctf () {
+    mv "$1" ~/me/projects/ctf
+}
 
+### context-switch aliases
+alias cselabs='ssh "$cse"'
+cse=beach144@kh4250-10.cselabs.umn.edu
 
+alias art='c ~/me/projects/RoboticArtisans'
+alias ASN3='c ~/me/classes/spring-2017/csci-4061/repo/Assignment_3'
+alias ASN4='c ~/me/classes/spring-2017/csci-4061/repo/5162968_5054269'
+alias books='c ~/me/reference/books'
+alias bookmarks='c ~/me/projects/evernote-bookmarks'
+alias ctf='c ~/me/projects/ctf'
+alias dln='c ~/Downloads'
+alias kidtech='c ~/me/projects/word-river'
+alias prjs='c ~/me/projects'
+alias so='c ~/me/projects/socli-dir/socli/socli'
+alias soq='python ~/me/projects/socli-dir/socli/socli/socli.py --interactive --query '
+alias 3081='c ~/me/classes/spring-2017/csci-3081'
+alias 3081i='c ~/me/classes/spring-2017/csci-3081/repo-beach144/'
+alias 3081p='3081 && c repos/repo-group-erasmus/project'
+alias 4041='c ~/me/classes/spring-2017/csci-4041'
+alias 5609='c ~/me/classes/spring-2017/csci-5609'
+alias 5609p='c ~/me/classes/spring-2017/csci-5609/5609-Final-Project'
 
 
 ####################################################
 # git aliases
 ####################################################
 
-alias g='git'
+alias g='hub'
+alias origin='git remote get-url origin'
 
 ## info
 alias gs='git status -sb'
@@ -57,14 +114,7 @@ alias grma='git rebase master --preserve-merges'
 alias gf='git fetch'
 # nice pull
 alias gl='git checkout master && git fetch && git rebase origin/master --preserve-merges --verbose'
-alias gp='git push origin HEAD'
-
-# clone repo from owner and name
-function clone () {
-    owner=$1
-    repo=$2
-    git clone "https://github.com/${owner}/${repo}.git"
-}
+alias gp='git push --set-upstream origin master'
 
 function umn-clone () {
     owner=$1
@@ -94,14 +144,6 @@ function gbc {
     fi
 }
 
-#### os x ###
-alias ibooks='open -a ibooks'
-#############
-
-####################################################
-# stuff I did not write, but may be useful
-####################################################
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
@@ -110,12 +152,6 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-
-# Canonical hex dump; some systems have this symlinked
-command -v hd > /dev/null || alias hd="hexdump -C"
-
-# URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
@@ -126,12 +162,6 @@ alias map="xargs -n1"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$method"="lwp-request -m '$method'"
 done
-
-# Make Grunt print stack traces by default
-command -v grunt > /dev/null && alias grunt="grunt --stack"
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
 
 ####################################################
 # ls/grep/color configuration
@@ -148,3 +178,5 @@ fi
 
 alias ll='ls -alF'
 alias la='ls -A'
+# OSX
+alias ls='ls -Gh'

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Make atom the default editor
-export EDITOR='atom';
+export EDITOR='vim';
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
@@ -20,3 +19,5 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS;

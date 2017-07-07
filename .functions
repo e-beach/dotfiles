@@ -4,29 +4,114 @@ function dot() {
     vim  ~/."$1" && . ~/.bashrc
 }
 
-# This function can't be an alias ( `alias edit=$EDITOR` ), because alias strings are apparently evaluated at compile-time, so the alias wouldn't respond to changes to the EDITOR env variable.
-function edit {
-   "$EDITOR" "$1"
+function jack(){
+    git config user.name "Jack Shubatt"
+    git config user.email "shuba012@umn.edu"
+    echo "you are jack"
+}
+
+function elliott(){
+    git config user.name "Elliott Beach"
+    git config user.email "beach144@umn.edu"
+    echo "you are elliott"
+}
+
+function jack-or-elliott(){
+    if [[ $(( $RANDOM % 2 )) == 0 ]] ; then AUTHOR='Jack Shubatt <shuba012@umn.edu>' ; else AUTHOR='Elliott Beach <beach144@umn.edu>' ; fi;
+    gc --amend --author="$AUTHOR"
+}
+
+function agrep () {
+    grep -A 2 -B 2 "$@"
+}
+
+function 3gc(){
+    if [[ $(( $RANDOM % 2 )) == 0 ]] ; then jack ; else elliott ; fi;
+    gc -m "$1"
+}
+
+function py-install () {
+    virtualenv python && source python/bin/activate && pip install -r requirements.txt
+}
+
+function browse (){
+    open -a Google\ Chrome `git remote get-url origin`
+}
+
+function goctf(){
+    mv $1 ~/me/projects/ctf
+}
+
+function ctfsend() {
+    scp "$1" $cse:~/ctf
+}
+
+function clone {
+    if [ -z ${2+x} ]
+    then
+        hub clone "$1"
+    else
+        hub clone "$1"/"$2"
+    fi
+}
+
+function screenshot {
+    # https://gist.github.com/e-beach/f943a048c3b669747ed4d9c51e2a6a86
+    # for convenience, get the most recent screen shot on osx
+    # might work for other OSs
+    screenshot=~/Desktop/$(ls -t ~/Desktop/ | grep "Screen Shot" | head -n 1)
+    if [ -z "$1" ]
+    then
+        dest="$1"
+    else
+        dest="."
+    fi
+    mv "$screenshot" "$dest"
+}
+
+function b {
+    if [ -z "$1" ] ; then
+        subl .
+    else
+        subl "$1"
+    fi
+}
+
+
+function copy {
+    echo "$1" | pbcopy
 }
 
 function emailme {
     echo "" | mutt -a "$1" -s "$1" -- beach144@morris.umn.edu
 }
 
-function c(){
+function email {
+    echo "" | mutt -a "$1" -s "$1" -- "$2"
+}
+
+function cc {
+    g++ "$1" && ./a.out
+}
+
+function c() {
     # cd and ls, as well move up n directories if $1 is a number n.
     if [[ -z $1 ]] ; then
             c ~
     else if [[ $1 =~ ^[0-9]+$ ]] ; then
-            local d=""
+            local d="."
             for ((i=0; i< $1; i++)) ; do
                 d=$d/..
             done
-            c .$d
+            c $d
         else
             cd "$1" && ls
         fi
     fi
+}
+
+function run {
+  gcc $1 && ./a.out
 }
 
 # execute commande in background without terminating on closing terminal

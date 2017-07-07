@@ -1,8 +1,16 @@
 # Compiled Python files
 *.pyc
 
+.DS_STORE
+
+# py.test cache
+.cache
+
 # .vim folder
 .vim
+
+# gch header
+*.gch
 
 # Folder view configuration files
 Desktop.ini
