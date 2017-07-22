@@ -1,0 +1,17 @@
+function clone --description "clone a GitHub repository"
+    hub clone $argv
+end
+
+function now --description "developement version of now"
+    /home/elliott/me/projects/now/out/now.js $argv
+end
+
+function official-now
+    /home/elliott/me/offical-now/node_modules/now/download/dist/now $argv
+end
+
+function trash
+    gvfs-trash $argv
+end
+
+

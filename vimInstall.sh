@@ -2,6 +2,7 @@
 
 # this script installs vundle on vim.
 
+mkdir "$HOME/.vim"
 cd "$HOME/.vim"
 mkdir swaps
 mkdir backups

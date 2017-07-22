@@ -1,6 +1,7 @@
 [user]
 	email = elliott2.71828@gmail.com
 	name = Elliott Beach
+	signingkey = 542327C93B120828
 
 [github]
    user = e-beach
@@ -13,7 +14,11 @@
 
 [core]
     excludesfile = ~/.gitignore
-	autocrlf = input
+    autocrlf = input
+    commentChar = auto
 
 [credential]
     helper = cache --timeout=3600
+
+[hub]
+	protocol = https

@@ -3,7 +3,7 @@
 alias sudo='sudo ' # Enable aliases to be sudo’ed
 
 ### utility aliases
-alias activate='source python/bin/activate' # activate a virtual environment
+alias activate='source venv/bin/activate' # activate a virtual environment
 aws='ec2-34-208-119-93'
 alias myaws='ssh -i "~/.ssh/ProjectInstance.pem" ubuntu@ec2-50-112-9-10.us-west-2.compute.amazonaws.com'
 function gosu(){
@@ -21,11 +21,7 @@ function gitdump {
     fi
     git add -A && git commit -m dump
 }
-alias browse_wp='chrome-cli open http://localhost:8888/wordpress'
-alias start_wp='/Applications/MAMP/bin/start.sh &'
-alias stop_wp='/Applications/MAMP/bin/stop.sh &'
-alias yo='projects && echo -e '\n\n\n' && c youngmis-website'
-alias screenshots='open ~/Desktop'
+alias now='/home/elliott/me/projects/now/out/now.js'
 alias recent='ls -t | head'
 alias opush='git push --set-upstream origin master'
 alias sodomize='\rm'
@@ -38,18 +34,12 @@ alias chex='chmod u+x'
 alias die='pkill python'
 alias finder='open .'
 alias h='heroku'
-alias how='howdoi'
-alias ida='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/IDA\ 6.8/idaq64.exe' # IDA disassembler
-alias ida32='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/IDA\ 6.8/idaq.exe'
 alias l='less -r' # use less for reading colored log files
 alias v='vim'
 alias m='make'
 alias i='ipython'
 alias p='python3'
-alias paste='pbpaste | pbcopy' # clean weird characters from clipboard
 alias pi='pip install --upgrade'
-alias xcode='open -a Xcode'
-alias desk='open ~/Desktop'
 
 function ctf () {
     mv "$1" ~/me/projects/ctf

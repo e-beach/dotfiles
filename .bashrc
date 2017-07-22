@@ -4,7 +4,9 @@
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extras}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+
 unset file;
+
 
 # vim mode
 set -o vi
