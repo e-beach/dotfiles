@@ -1,8 +1,43 @@
-function clone --description "clone a GitHub repository"
-    hub clone $argv
-end
+#fish_vi_key_bindings
 
-function now --description "developement version of now"
+alias recent="ls -t | head -n 10"
+alias hub-2.3.10='hub'
+alias git="hub"
+alias chex="chmod u+x"
+alias opush="git push --set-upstream origin/master"
+abbr greplog="git log -p | grep -A 5 -B 5"
+abbr grepr="grep -rin"
+
+abbr zf="z faas"
+abbr k="kubectl"
+abbr "apt-get"="sudo apt-get -y"
+abbr grb="git rebase -i"
+abbr gb="git branch"
+abbr gst="git stash"
+abbr grst="git reset --soft; and git stash save"
+abbr gco="git checkout"
+abbr gc='git commit'
+abbr ga='git add'
+abbr gd='git diff'
+abbr gdc='git diff --cached'
+alias gsc="git sync"
+
+abbr clone="hub clone"
+abbr browse="hub browse >/dev/null 2>&1"
+abbr trash="gvfs-trash"
+
+alias gs='git status -sb'
+alias g-undo="git reset HEAD~ --soft"
+alias prjs="cd /home/elliott/me/projects/; and ls"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias git-dev='/home/elliott/me/projects/hub-root/hub/bin/hub'
+alias c="vim ~/.config/fish/config.fish; and source ~/.config/fish/config.fish"
+alias gconfig="vim ~/.gitconfig"
+
+alias 'gt'='go test ;or go test github'
+alias trash='gvfs-trash'
+
+function now
     /home/elliott/me/projects/now/out/now.js $argv
 end
 
@@ -10,8 +45,22 @@ function official-now
     /home/elliott/me/offical-now/node_modules/now/download/dist/now $argv
 end
 
-function trash
-    gvfs-trash $argv
+# to allow sudoing fish commands
+function sudo
+    if functions -q $argv[1]
+        set argv fish -c "$argv"
+    end
+    command sudo $argv
 end
 
+set PATH $PATH '/home/elliott/.node_modules_global/bin'
+set PATH $PATH '/home/elliott/bin'
+set PATH $PATH '.'
 
+export TOKEN="fd9882949ba38d6ea0f2c58be0d094867367e8e9"
+export EDITOR="vim"
+export GOROOT="/usr/local/go"
+export GOPATH="/home/elliott/me/projects/go"
+set PATH $PATH $GOPATH/bin
+set PATH $PATH $GOROOT/bin
+set PATH $PATH "/home/elliott/.rvm/bin"
