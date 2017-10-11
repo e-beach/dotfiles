@@ -15,10 +15,17 @@
 [core]
     excludesfile = ~/.gitignore
     autocrlf = input
-    commentChar = auto
+    #commentchar = auto
+    editor = vim
 
 [credential]
     helper = cache --timeout=3600
 
 [hub]
 	protocol = https
+
+[commit]
+    # template = ~/.gitmessage
+[commit]
+	gpgsign = true
+    template = ~/.faas-gitmessage
