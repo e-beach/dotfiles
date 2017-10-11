@@ -1,5 +1,10 @@
 ""runtime! debian.vim
 
+" from https://github.com/dag/vim-fish#teach-a-vim-to-fish
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 set nocompatible
 filetype off
 filetype plugin indent on
@@ -17,6 +22,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kshenoy/vim-signature'
 Plugin 'gioele/vim-autoswap'
+Plugin 'dag/vim-fish'
 
 
 " let Vundle manage Vundle
@@ -207,6 +213,7 @@ inoremap ' ''<Left>
 
 nnoremap <leader>gcc :!gcc % && ./a.out<CR>
 nnoremap <leader>g++ :!g++ % && ./a.out<CR>
+nnoremap <leader>sign iSigned-off-by: Elliott Beach <elliott2.71828@gmail.com><Esc>
 
 nnoremap <leader>sh  :!bash<CR>
 vnoremap <leader>cp :w !pbcopy<CR><CR>
@@ -216,6 +223,7 @@ colorscheme Monokai
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plugins"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufRead,BufNewFile /home/elliott/test/* let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 if !exists("g:didSyntastic")
     "syntastic goes freaking shitballs if you load it twice"
@@ -238,6 +246,18 @@ let g:syntastic_html_checkers = ['']
 
 let g:NERDTreeWinSize = 20
 nnoremap <leader>nerd :NERDTree<cr>
+
+
+                " Fish
+
+" Set up :make to use fish for syntax checking.
+autocmd FileType fish compiler fish
+
+" Set this to have long lines wrap inside comments.
+autocmd FileType fish setlocal textwidth=79
+
+" Enable folding of block structures in fish.
+autocmd FileType fish setlocal foldmethod=expr
 
 " display all buffers with airine
 let g:airline#extensions#tabline#enabled = 1"
